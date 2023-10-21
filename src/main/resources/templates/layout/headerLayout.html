@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html
     xmlns:th="http://www.w3.org/1999/xhtml"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{layout/root}"
 >
@@ -15,6 +16,8 @@
         <form method="POST" th:action="@{/logout}">
             <button type="submit" class="btn btn-light">ログアウト</button>
         </form>
+        <strong sec:authorize="isAuthenticated()">認証済み</strong>
+        <strong sec:authorize="!isAuthenticated()">未認証</strong>
     </header>
     <main id="main-area" layout:fragment="headerLayoutContent">
         <!--{children}-->

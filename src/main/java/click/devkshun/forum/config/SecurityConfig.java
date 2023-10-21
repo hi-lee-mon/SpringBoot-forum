@@ -36,7 +36,7 @@ public class SecurityConfig {
     http.authorizeHttpRequests(authz -> authz //URL毎の認可設定記述開始
         .requestMatchers(UrlConst.NO_AUTHENTICATION).permitAll()
         .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-        .permitAll() // /css/**などログインしていなくてもアクセス可能
+          .permitAll()// /css/**などログインしていなくてもアクセス可能とする
         .anyRequest().authenticated() // 上記以外の全てのURLはログイン後のみアクセス可能
     ).formLogin(login -> login //  フォーム認証の設定記載開始(フォームを利用した認証をすると宣言する)
         .loginPage(UrlConst.LOGIN) // ログイン画面のURL指定

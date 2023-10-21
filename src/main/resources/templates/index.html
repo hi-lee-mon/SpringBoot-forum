@@ -12,7 +12,10 @@
 <body>
 <div layout:fragment="headerLayoutContent">
   <div>Home</div>
-
+  <p th:text="|ログインID：${#authentication.principal.username}|"></p>
+  <th:block th:if="${hasUserManageAuth}">
+    <a href="" class="btn btn-danger">管理画面へ</a>
+  </th:block>
 </div>
 </body>
 </html>

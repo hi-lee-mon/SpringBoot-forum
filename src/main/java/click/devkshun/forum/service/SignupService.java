@@ -1,5 +1,6 @@
 package click.devkshun.forum.service;
 
+import click.devkshun.forum.constant.AuthorityKindEnum;
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.SignupForm;
 import click.devkshun.forum.repository.UserInfoRepository;
@@ -27,9 +28,16 @@ public class SignupService {
   private final PasswordEncoder passwordEncoder;
 
   /**
-   * ユーザ情報テーブル 新規登録
+   * 画面の入力情報を元にユーザー情報テーブルの新規登録を行います。
+   *
+   * <p>ただし、以下のテーブル項目はこの限りではありません。
+   * <ul>
+   * <li>パスワード：画面で入力したパスワードがハッシュ化され登録されます。</li>
+   * <li>権限：常に「商品情報の確認が可能」のコード値が登録されます。</li>
+   * </ul>
+   *
    * @param signupForm 入力情報
-   * @return 登録情報(ユーザ情報Entity)、既に同じユーザIDで登録がある場合はEmpty
+   * @return 登録情報(ユーザー情報Entity)、既に同じユーザIDで登録がある場合はEmpty
    */
   public Optional<UserInfo> registerUserInfo(SignupForm signupForm){
     // ユーザが既に登録済か確認
@@ -42,6 +50,7 @@ public class SignupService {
     UserInfo userInfo = dozerMapper.map(signupForm,UserInfo.class);
     String encodedPassword = passwordEncoder.encode(signupForm.getPassword());
     userInfo.setPassword(encodedPassword);
+    userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER.getAuthorityKind());
     return Optional.of(repository.save(userInfo));
   }
 }
