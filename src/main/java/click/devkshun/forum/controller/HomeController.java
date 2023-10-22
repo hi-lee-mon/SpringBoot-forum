@@ -1,6 +1,7 @@
 package click.devkshun.forum.controller;
 
 import click.devkshun.forum.constant.AuthorityKindEnum;
+import click.devkshun.forum.constant.SignupMessageEnum;
 import click.devkshun.forum.constant.UrlConst;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
