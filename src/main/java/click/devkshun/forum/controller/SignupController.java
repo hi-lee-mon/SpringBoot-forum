@@ -1,19 +1,15 @@
 package click.devkshun.forum.controller;
 
-import click.devkshun.forum.constant.ErrorMessageConst;
-import click.devkshun.forum.constant.MessageConst;
 import click.devkshun.forum.constant.SignupMessageEnum;
 import click.devkshun.forum.constant.UrlConst;
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.LoginForm;
 import click.devkshun.forum.form.SignupForm;
-import click.devkshun.forum.service.LoginService;
 import click.devkshun.forum.service.SignupService;
 import click.devkshun.forum.util.AppUtil;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
