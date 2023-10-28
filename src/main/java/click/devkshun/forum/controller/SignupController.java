@@ -3,7 +3,6 @@ package click.devkshun.forum.controller;
 import click.devkshun.forum.constant.SignupMessageEnum;
 import click.devkshun.forum.constant.UrlConst;
 import click.devkshun.forum.entity.UserInfo;
-import click.devkshun.forum.form.LoginForm;
 import click.devkshun.forum.form.SignupForm;
 import click.devkshun.forum.service.SignupService;
 import click.devkshun.forum.util.AppUtil;
@@ -41,7 +40,7 @@ public class SignupController {
   @GetMapping(UrlConst.SIGNUP)
   public ModelAndView view(ModelAndView modelAndView){
     // 空のフォームを作成
-    modelAndView.addObject("signupForm", new LoginForm());
+    modelAndView.addObject("signupForm", new SignupForm());
     // 遷移先の指定
     modelAndView.setViewName(UrlConst.SIGNUP);
     return modelAndView;
