@@ -28,8 +28,8 @@ public class LogAspect {
    * @return 指定したメソッドの戻り値
    */
   @Around("execution(* click.devkshun.forum..*(..))")
-  public Object writeLog(ProceedingJoinPoint jp) {
-    Object targetMethodReturn = null;
+  public Object writeLog(ProceedingJoinPoint jp) throws Throwable  {
+    Object targetMethodReturn;
     // 開始ログを出力
     log.info("start：" + jp.getSignature().toString());
 
@@ -39,6 +39,7 @@ public class LogAspect {
     } catch (Throwable t) {
       // エラーログを出力
       log.error(t.toString());
+      throw t;
     }
 
     // 終了ログを出力
