@@ -108,6 +108,15 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<version>3.1.4</version>
 		</dependency>
+		<!--	DBマイグレーション-->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -121,6 +130,16 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>9.16.3</version>
+				<configuration>
+					<url>jdbc:mysql://localhost/spring_k_channel</url>
+					<user>devuser01</user>
+					<password>mysql</password>
 				</configuration>
 			</plugin>
 		</plugins>
