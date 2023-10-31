@@ -11,11 +11,8 @@
 
 <body>
 <div layout:fragment="headerLayout">
-  <div>Home</div>
-  <p th:text="|ログインID：${#authentication.principal.username}|"></p>
-  <th:block th:if="${hasUserManageAuth}">
-    <a th:href="@{/userList}" class="btn btn-danger">管理画面へ</a>
-  </th:block>
+  <p>予期せぬエラーが発生しました。</p>
+  <a th:href="@{/index}">ホーム画面へ</a>
 </div>
 </body>
 </html>

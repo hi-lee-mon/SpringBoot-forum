@@ -1,11 +1,11 @@
 package click.devkshun.forum.service;
 
-import click.devkshun.forum.constant.AuthorityKindEnum;
+import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.SignupForm;
 import click.devkshun.forum.repository.UserInfoRepository;
+import com.github.dozermapper.core.Mapper;
 import java.util.Optional;
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,7 +48,7 @@ public class SignupServiceImpl implements SignupService {
     UserInfo userInfo = dozerMapper.map(signupForm,UserInfo.class);
     String encodedPassword = passwordEncoder.encode(signupForm.getPassword());
     userInfo.setPassword(encodedPassword);
-    userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER.getAuthorityKind());
+    userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER);
     return Optional.of(repository.save(userInfo));
   }
 }

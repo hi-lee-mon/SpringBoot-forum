@@ -11,7 +11,7 @@
 
 <body>
 
-<div layout:fragment="headerLayoutContent" class="container-fluid">
+<div layout:fragment="headerLayout" class="container-fluid">
   <h1>ログイン画面</h1>
   <p th:text="${errorMsg}" class="error_msg"/>
   <form method="POST" th:action="@{/login}" th:object="${loginForm}">

@@ -52,8 +52,6 @@ public class LoginController {
    * @return
    */
   @GetMapping(value=UrlConst.LOGIN,params="error")
-
-
   public ModelAndView viewError(ModelAndView modelAndView){
     var errorInfo = (Exception)session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     modelAndView.addObject("errorMsg",errorInfo.getMessage());

@@ -1,8 +1,7 @@
 package click.devkshun.forum.controller;
 
-import click.devkshun.forum.constant.AuthorityKindEnum;
-import click.devkshun.forum.constant.SignupMessageEnum;
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -27,7 +26,7 @@ public class HomeController {
   public ModelAndView view(@AuthenticationPrincipal User user,ModelAndView modelAndView){
     // 管理者権限を持つユーザ情報か判定する
     var hasUserManageAuth = user.getAuthorities().stream().allMatch(authority -> authority.getAuthority().equals(
-        AuthorityKindEnum.ITEM_AND_USER_MANAGER.getAuthorityKind()));
+        AuthorityKindEnum.ITEM_AND_USER_MANAGER.getCode()));
     // 遷移先の指定
     modelAndView.setViewName(UrlConst.HOME);
     // 管理者権限フラグ

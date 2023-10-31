@@ -1,6 +1,11 @@
 package click.devkshun.forum.entity;
 
+import click.devkshun.forum.constant.db.AuthorityKindEnum;
+import click.devkshun.forum.constant.db.UserStatusKindEnum;
+import click.devkshun.forum.entity.converter.UserAuthorityConverter;
+import click.devkshun.forum.entity.converter.UserStatusConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -36,42 +41,45 @@ public class UserInfo {
   @Column(name = "account_locked_time")
   private LocalDateTime accountLockedTime;
 
-  /** 利用可能か(true:利用可能) */
+  /** ユーザー状態種別 */
   @Column(name = "is_disabled")
-  private boolean isDisabled;
+  @Convert(converter = UserStatusConverter.class)
+  private UserStatusKindEnum status;
 
-  /** ユーザ権限 */
-  @Column
-  private String authority;
+  /** ユーザー権限種別 */
+  @Convert(converter = UserAuthorityConverter.class)
+  private AuthorityKindEnum authority;
 
+  /**
+   * デフォルトコンストラクタ
+   */
   public UserInfo() {
-    // デフォルトコンストラクタの実装
   }
 
   /**
-   * ログイン失敗回数をインクリメントする
+   * ログイン失敗回数をインクリメントします。
    *
-   * @return ログイン失敗回数がインクリメントされたUserInfo
+   * @return ログイン失敗回数がインクリメントされた、自身のインスタンス
    */
   public UserInfo incrementLoginFailureCount() {
-    return new UserInfo(loginId, password, ++loginFailureCount, accountLockedTime, isDisabled,authority);
+    return new UserInfo(loginId, password, ++loginFailureCount, accountLockedTime, status, authority);
   }
 
   /**
-   * ログイン失敗情報をリセットする
+   * ログイン失敗情報をリセットします。
    *
-   * @return ログイン失敗情報がリセットされたUserInfo
+   * @return ログイン失敗情報がリセットされた、自身のインスタンス
    */
   public UserInfo resetLoginFailureInfo() {
-    return new UserInfo(loginId, password, 0, null, isDisabled,authority);
+    return new UserInfo(loginId, password, 0, null, status, authority);
   }
 
   /**
-   * アカウントロック状態に更新する
+   * ログイン失敗回数、アカウントロック日時を更新し、アカウントロック状態に更新します。
    *
-   * @return ログイン失敗階位数、アカウントロック日時が更新されたUserInfo
+   * @return ログイン失敗回数、アカウントロック日時が更新された、自身のインスタンス
    */
   public UserInfo updateAccountLocked() {
-    return new UserInfo(loginId, password, 0, LocalDateTime.now(), isDisabled,authority);
+    return new UserInfo(loginId, password, 0, LocalDateTime.now(), status, authority);
   }
 }

@@ -58,8 +58,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     return User.withUsername(userInfo.getLoginId())
         .password(userInfo.getPassword())
 //        .roles("USER")
-        .authorities(userInfo.getAuthority())
-        .disabled(userInfo.isDisabled())
+        .authorities(userInfo.getAuthority().getCode())
+        .disabled(userInfo.getStatus().isDisabled())
         .accountLocked(isAccountLocked)
         // .accountExpired(true) ※アカウント有効期限切れか？
         // .credentialsExpired(true) ※パスワード有効期限切れか？
