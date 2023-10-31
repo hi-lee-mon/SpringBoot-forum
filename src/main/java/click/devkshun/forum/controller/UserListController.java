@@ -41,7 +41,7 @@ public class UserListController {
    * @return 表示画面
    */
   @GetMapping(UrlConst.USER_LIST)
-  public ModelAndView view(ModelAndView modelAndView) {
+  public ModelAndView view(ModelAndView modelAndView, UserListForm form) {
     // ユーザ一覧情報を取得
     var userInfoDtoList = service.getAllUserList();
     // 検索条件フォームの初期値をセット
