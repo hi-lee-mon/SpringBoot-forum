@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * ユーザー一覧画面Service実装クラス
  *
- * @author ys-fj
+ * @author shun
  *
  */
 @Service
@@ -46,7 +46,7 @@ public class UserListServiceImpl implements UserListService {
     for (UserInfo gotUserInfo : gotUserInfoList) {
       // entityをdtoに詰める
       var userInfoDto = mapper.map(gotUserInfo, UserInfoDto.class);
-      // dto
+      // TODO:enumを画面側に渡してもよい気がする
       userInfoDto.setStatus(gotUserInfo.getStatus().getDisplayValue());
       userInfoDto.setAuthority(gotUserInfo.getAuthority().getDisplayValue());
       userInfoDtoList.add(userInfoDto);

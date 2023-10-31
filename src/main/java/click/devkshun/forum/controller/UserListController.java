@@ -41,13 +41,15 @@ public class UserListController {
    * @return 表示画面
    */
   @GetMapping(UrlConst.USER_LIST)
-  public ModelAndView view(ModelAndView modelAndView, UserListForm form) {
+  public ModelAndView view(ModelAndView modelAndView) {
+    // ユーザ一覧情報を取得
     var userInfoDtoList = service.getAllUserList();
-    modelAndView.addObject(KEY_USERLIST, userInfoDtoList);
-
+    // 検索条件フォームの初期値をセット
     modelAndView.addObject(KEY_USER_STATUS_KINDS, UserStatusKindEnum.values());
     modelAndView.addObject(KEY_AUTHORITY_KINDS, AuthorityKindEnum.values());
-
+    // ユーザ一覧情報をセット
+    modelAndView.addObject(KEY_USERLIST, userInfoDtoList);
+    // 遷移先の指定
     modelAndView.setViewName(UrlConst.USER_LIST);
 
     return modelAndView;
