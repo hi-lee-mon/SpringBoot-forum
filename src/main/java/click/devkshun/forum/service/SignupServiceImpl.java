@@ -2,7 +2,6 @@ package click.devkshun.forum.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,6 @@ public class SignupServiceImpl implements SignupService {
   /**パスワードエンコーダー*/
   private final PasswordEncoder passwordEncoder;
 
-  @Autowired
   public SignupServiceImpl(UserInfoRepository repository,Mapper dozerMapper,PasswordEncoder passwordEncoder){
     this.dozerMapper = dozerMapper;
     this.repository = repository;

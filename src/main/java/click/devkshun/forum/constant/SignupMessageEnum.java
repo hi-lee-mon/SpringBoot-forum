@@ -9,6 +9,6 @@ public enum SignupMessageEnum {
   SUCCESS(MessageConst.SIGNUP_RESIST_SUCCEED,false),
   EXISTS_LOGIN_ID(ErrorMessageConst.SIGNUP_EXISTS_LOGIN_ID,true);
 
-  private String messageId;
-  private boolean isError;
+  private final String messageId;
+  private final boolean isError;
 }

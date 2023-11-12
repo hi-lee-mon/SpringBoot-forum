@@ -15,8 +15,8 @@ public class UrlConst {
   /** ユーザー一覧画面 */
   public static final String USER_LIST = "userList";
 
-  public static final String Error = "error";
+  public static final String ERROR = "error";
 
   /**認証不要 画面*/
-  public static final String[] NO_AUTHENTICATION = {LOGIN,SIGNUP,Error,"webjars/**"};
+  public static final String[] NO_AUTHENTICATION = {LOGIN,SIGNUP,ERROR,"webjars/**"};
 }

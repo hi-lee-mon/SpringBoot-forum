@@ -17,12 +17,13 @@ public class ErrorController {
   /**
    * 初期表示
    *
+   * @param modelAndView 表示用モデル
    * @return 表示画面
    */
-  @GetMapping(value=UrlConst.Error,params="continue")
+  @GetMapping(value=UrlConst.ERROR,params="continue")
   public ModelAndView view(ModelAndView modelAndView){
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.Error);
+    modelAndView.setViewName(UrlConst.ERROR);
     return modelAndView;
   }
 
