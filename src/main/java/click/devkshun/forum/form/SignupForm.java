@@ -1,9 +1,10 @@
 package click.devkshun.forum.form;
 
 
+import org.hibernate.validator.constraints.Length;
+
 import click.devkshun.forum.constant.ValidationMessageConst;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 /**
  * ユーザ登録画面 Form

@@ -1,7 +1,8 @@
 package click.devkshun.forum.service;
 
-import click.devkshun.forum.entity.UserInfo;
 import java.util.Optional;
+
+import click.devkshun.forum.entity.UserInfo;
 
 /**
  * ログイン画面 Serviceインターフェース

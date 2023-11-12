@@ -1,8 +1,9 @@
 package click.devkshun.forum.service;
 
+import java.util.Optional;
+
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.SignupForm;
-import java.util.Optional;
 
 /**
  * ユーザー登録画面Serviceインターフェース

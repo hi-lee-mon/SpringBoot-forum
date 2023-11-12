@@ -1,10 +1,12 @@
 package click.devkshun.forum.service;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.repository.UserInfoRepository;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 /**
  * ログイン画面 Service

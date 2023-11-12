@@ -1,5 +1,7 @@
 package click.devkshun.forum.entity;
 
+import java.time.LocalDateTime;
+
 import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import click.devkshun.forum.constant.db.UserStatusKindEnum;
 import click.devkshun.forum.entity.converter.UserAuthorityConverter;
@@ -9,7 +11,6 @@ import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

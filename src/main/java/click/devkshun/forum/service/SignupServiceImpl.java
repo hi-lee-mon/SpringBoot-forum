@@ -1,14 +1,18 @@
 package click.devkshun.forum.service;
 
-import click.devkshun.forum.constant.db.AuthorityKindEnum;
-import click.devkshun.forum.entity.UserInfo;
-import click.devkshun.forum.form.SignupForm;
-import click.devkshun.forum.repository.UserInfoRepository;
-import com.github.dozermapper.core.Mapper;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.github.dozermapper.core.Mapper;
+
+import click.devkshun.forum.constant.db.AuthorityKindEnum;
+import click.devkshun.forum.constant.db.UserStatusKindEnum;
+import click.devkshun.forum.entity.UserInfo;
+import click.devkshun.forum.form.SignupForm;
+import click.devkshun.forum.repository.UserInfoRepository;
 
 /**
  * ユーザ登録画面 Service実装クラス
@@ -49,6 +53,7 @@ public class SignupServiceImpl implements SignupService {
     String encodedPassword = passwordEncoder.encode(signupForm.getPassword());
     userInfo.setPassword(encodedPassword);
     userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER);
+    userInfo.setStatus(UserStatusKindEnum.ENABLED);
     return Optional.of(repository.save(userInfo));
   }
 }

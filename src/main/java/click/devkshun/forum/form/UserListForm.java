@@ -1,10 +1,11 @@
 package click.devkshun.forum.form;
 
 
+import org.hibernate.validator.constraints.Length;
+
 import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import click.devkshun.forum.constant.db.UserStatusKindEnum;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 /**
  * ユーザー登録画面Formクラス

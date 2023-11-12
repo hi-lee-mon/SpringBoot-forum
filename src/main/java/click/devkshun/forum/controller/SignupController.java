@@ -1,13 +1,7 @@
 package click.devkshun.forum.controller;
 
-import click.devkshun.forum.constant.SignupMessageEnum;
-import click.devkshun.forum.constant.UrlConst;
-import click.devkshun.forum.entity.UserInfo;
-import click.devkshun.forum.form.SignupForm;
-import click.devkshun.forum.service.SignupService;
-import click.devkshun.forum.util.AppUtil;
 import java.util.Optional;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,6 +9,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import click.devkshun.forum.constant.SignupMessageEnum;
+import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.entity.UserInfo;
+import click.devkshun.forum.form.SignupForm;
+import click.devkshun.forum.service.SignupService;
+import click.devkshun.forum.util.AppUtil;
+import lombok.RequiredArgsConstructor;
 
 /**
  * ユーザ登録画面 Controller

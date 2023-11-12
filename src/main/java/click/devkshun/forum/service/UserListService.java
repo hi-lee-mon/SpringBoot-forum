@@ -1,7 +1,8 @@
 package click.devkshun.forum.service;
 
-import click.devkshun.forum.dto.UserInfoDto;
 import java.util.List;
+
+import click.devkshun.forum.dto.UserInfoDto;
 /**
  * ユーザー一覧画面Serviceクラス
  *

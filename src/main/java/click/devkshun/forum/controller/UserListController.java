@@ -1,14 +1,15 @@
 package click.devkshun.forum.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import click.devkshun.forum.constant.UrlConst;
 import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import click.devkshun.forum.constant.db.UserStatusKindEnum;
 import click.devkshun.forum.form.UserListForm;
 import click.devkshun.forum.service.UserListService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * ユーザー一覧画面Controllerクラス
