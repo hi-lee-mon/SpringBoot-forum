@@ -55,6 +55,7 @@ public class SignupServiceImpl implements SignupService {
     userInfo.setStatus(UserStatusKindEnum.ENABLED);
     userInfo.setCreateTime(LocalDateTime.now());
     userInfo.setUpdateTime(LocalDateTime.now());
+    userInfo.setUpdateUser(signupForm.getLoginId());
     return Optional.of(repository.save(userInfo));
   }
 }

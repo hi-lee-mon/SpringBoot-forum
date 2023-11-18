@@ -34,4 +34,7 @@ public class UserInfoDto {
   /** 更新日時 */
   private LocalDateTime updateTime;
 
+  /** 更新ユーザー */
+  private String updateUser;
+
 }
