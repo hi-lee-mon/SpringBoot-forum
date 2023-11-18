@@ -1,14 +1,15 @@
 package click.devkshun.forum.service;
 
-import click.devkshun.forum.dto.UserInfoDto;
-import click.devkshun.forum.entity.UserInfo;
-import click.devkshun.forum.repository.UserInfoRepository;
-import com.github.dozermapper.core.Mapper;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.github.dozermapper.core.Mapper;
+
+import click.devkshun.forum.dto.UserInfoDto;
+import click.devkshun.forum.entity.UserInfo;
+import click.devkshun.forum.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -45,8 +46,7 @@ public class UserListServiceImpl implements UserListService {
     var userInfoDtoList = new ArrayList<UserInfoDto>();
     for (UserInfo gotUserInfo : gotUserInfoList) {
       // entityをdtoに詰める
-      var userInfoDto = mapper.map(gotUserInfo, UserInfoDto.class);
-      // TODO:enumを画面側に渡してもよい気がする
+      UserInfoDto userInfoDto = mapper.map(gotUserInfo, UserInfoDto.class);
       userInfoDto.setStatus(gotUserInfo.getStatus().getDisplayValue());
       userInfoDto.setAuthority(gotUserInfo.getAuthority().getDisplayValue());
       userInfoDtoList.add(userInfoDto);

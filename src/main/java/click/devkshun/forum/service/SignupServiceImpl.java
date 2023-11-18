@@ -1,5 +1,6 @@
 package click.devkshun.forum.service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,6 +53,8 @@ public class SignupServiceImpl implements SignupService {
     userInfo.setPassword(encodedPassword);
     userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER);
     userInfo.setStatus(UserStatusKindEnum.ENABLED);
+    userInfo.setCreateTime(LocalDateTime.now());
+    userInfo.setUpdateTime(LocalDateTime.now());
     return Optional.of(repository.save(userInfo));
   }
 }

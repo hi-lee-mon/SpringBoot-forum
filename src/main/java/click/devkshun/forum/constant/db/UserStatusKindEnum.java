@@ -18,8 +18,8 @@ public enum UserStatusKindEnum {
   DISABLED(true, "利用不可");
 
   /** 利用不可か */
-  private boolean isDisabled;
+  private final boolean isDisabled;
 
   /** 画面表示する説明文 */
-  private String displayValue;
+  private final String displayValue;
 }

@@ -60,26 +60,34 @@
 <!--  ユーザテーブル-->
   <div class="mt-3">
     <form th:action="@{/manageUser}" method="post">
+      <!-- table table-stripedはbootstrapのクラス -->
       <table class="table table-striped" id="userList">
         <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">ログインID</th>
-          <th scope="col">ログイン失敗回数</th>
-          <th scope="col">アカウントロック日時</th>
-          <th scope="col">アカウント状態</th>
-          <th scope="col">所有権限</th>
-        </tr>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">ログインID</th>
+            <th scope="col">ログイン失敗回数</th>
+            <th scope="col">アカウントロック日時</th>
+            <th scope="col">アカウント状態</th>
+            <th scope="col">所有権限</th>
+            <th scope="col">登録日時</th>
+            <th scope="col">最終更新日時</th>
+          </tr>
         </thead>
         <tbody>
-        <tr th:each="user, stat  : ${userList}">
-          <th scope="row" th:text="${stat.count}"></th>
-          <td th:id="|loginId_${stat.count}|"><span th:text="${user.loginId}"></span></td>
-          <td th:id="|loginFailureCount_${stat.count}|"><span th:text="${user.loginFailureCount}"></span></td>
-          <td th:id="|accountLockedTime_${stat.count}|"><span th:text="${user.accountLockedTime} != null ? ${#temporals.format(user.accountLockedTime, 'yyyy-MM-dd HH:mm')} : '-'"></span></td>
-          <td th:id="|status_${stat.count}|"><span th:text="${user.status}"></span></td>
-          <td th:id="|authority_${stat.count}|"><span th:text="${user.authority}"></span></td>
-        </tr>
+          <!-- userはuserListの要素。statはth:eachのステータス変数。stat.countで現在のインデックスを1始まりで取得できる。他にもindex,size,first,lastがある -->
+          <tr th:each="user, stat  : ${userList}">
+            <th scope="row" th:text="${stat.count}"></th>
+            <!-- パイプラインは文字列連結のために使用 例：|loginId_${stat.count}| -->
+            <td th:id="|loginId_${stat.count}|"><span th:text="${user.loginId}"></span></td>
+            <td th:id="|loginFailureCount_${stat.count}|"><span th:text="${user.loginFailureCount}"></span></td>
+            <!-- temporalsで文字列のフォーマットする -->
+            <td th:id="|accountLockedTime_${stat.count}|"><span th:text="${user.accountLockedTime} != null ? ${#temporals.format(user.accountLockedTime, 'yyyy-MM-dd HH:mm')} : '-'"></span></td>
+            <td th:id="|status_${stat.count}|"><span th:text="${user.status}"></span></td>
+            <td th:id="|authority_${stat.count}|"><span th:text="${user.authority}"></span></td>
+            <td th:id="|createTime_${stat.count}|"><span th:text="${#temporals.format(user.createTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+            <td th:id="|updateTime_${stat.count}|"><span th:text="${#temporals.format(user.updateTime, 'yyyy-MM-dd HH:mm')}"></span></td>
+          </tr>
         </tbody>
       </table>
       <input type="submit" class="btn btn-secondary" id="updateBtn" name="update" value="更新" disabled>
