@@ -7,8 +7,8 @@ import lombok.Getter;
 
 /**
  * ユーザー権限種別
- *
- * @author ys-fj
+ * 
+ * @author shun
  */
 @Getter
 @AllArgsConstructor
@@ -27,10 +27,10 @@ public enum AuthorityKindEnum {
   ITEM_AND_USER_MANAGER("3", "全ユーザー情報の管理が可能");
 
   /** コード値 */
-  private String code;
+  private final String code;
 
   /** 画面表示する説明文 */
-  private String displayValue;
+  private final String displayValue;
 
   /**
    * Enum逆引き

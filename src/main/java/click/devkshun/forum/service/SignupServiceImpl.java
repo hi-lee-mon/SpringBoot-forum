@@ -51,8 +51,8 @@ public class SignupServiceImpl implements SignupService {
     UserInfo userInfo = dozerMapper.map(signupForm,UserInfo.class);
     String encodedPassword = passwordEncoder.encode(signupForm.getPassword());
     userInfo.setPassword(encodedPassword);
-    userInfo.setAuthority(AuthorityKindEnum.ITEM_WATCHER);
-    userInfo.setStatus(UserStatusKindEnum.ENABLED);
+    userInfo.setAuthorityKind(AuthorityKindEnum.ITEM_WATCHER);
+    userInfo.setUserStatusKind(UserStatusKindEnum.ENABLED);
     userInfo.setCreateTime(LocalDateTime.now());
     userInfo.setUpdateTime(LocalDateTime.now());
     userInfo.setUpdateUser(signupForm.getLoginId());

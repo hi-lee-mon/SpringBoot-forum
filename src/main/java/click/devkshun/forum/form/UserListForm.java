@@ -10,7 +10,7 @@ import lombok.Data;
 /**
  * ユーザー登録画面Formクラス
  *
- * @author ys-fj
+ * @author shun
  *
  */
 @Data
@@ -25,17 +25,17 @@ public class UserListForm {
   /** ユーザー権限種別 */
   private AuthorityKindEnum authorityKind;
 
-  /** ユーザー一覧情報から選択されたログインID */
-  private String selectedLoginId;
+  	/** ユーザー一覧情報から選択されたログインID */
+	private String selectedLoginId;
 
-  /**
-   * ユーザー一覧情報から選択されたログインIDをクリアします。
-   *
-   * @return ユーザー一覧情報から選択されたログインIDクリア後のインスタンス
-   */
-  public UserListForm clearSelectedLoginId() {
-    this.selectedLoginId = null;
+	/**
+	 * ユーザー一覧情報から選択されたログインIDをクリアします。
+	 * 
+	 * @return ユーザー一覧情報から選択されたログインIDクリア後のインスタンス
+	 */
+	public UserListForm clearSelectedLoginId() {
+		this.selectedLoginId = null;
 
-    return this;
-  }
+		return this;
+	}
 }

@@ -9,7 +9,9 @@ import com.github.dozermapper.core.Mapper;
 
 import click.devkshun.forum.dto.UserInfoDto;
 import click.devkshun.forum.entity.UserInfo;
+import click.devkshun.forum.form.UserListForm;
 import click.devkshun.forum.repository.UserInfoRepository;
+import click.devkshun.forum.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -37,6 +39,40 @@ public class UserListServiceImpl implements UserListService {
   }
 
   /**
+   * {@inheritDoc}
+   */
+  @Override
+  public List<UserInfoDto>  getUserListByParam(UserListForm form){
+    var userInfo = mapper.map(form, UserInfo.class);
+		return toUserInfoList(findUserInfoByParam(userInfo));
+  }
+
+  	/**
+	 * ユーザー情報の条件検索を行い、検索結果を返却します。
+	 * 
+	 * @param form 入力情報
+	 * @return 検索結果
+	 */
+	private List<UserInfo> findUserInfoByParam(UserInfo userInfo) {
+		var loginIdParam = AppUtil.addWildcard(userInfo.getLoginId());
+    boolean existsStatus = !AppUtil.isNull(userInfo.getUserStatusKind());
+    boolean existsAuthority = !AppUtil.isNull(userInfo.getAuthorityKind());
+
+    if(existsStatus && existsAuthority){
+      return repository.findByLoginIdLikeAndUserStatusKindAndAuthorityKind(loginIdParam,
+					userInfo.getUserStatusKind(), userInfo.getAuthorityKind());
+    }
+    if(existsStatus){
+      return repository.findByLoginIdLikeAndUserStatusKind(loginIdParam, userInfo.getUserStatusKind());
+    }
+    if(existsAuthority){
+      return repository.findByLoginIdLikeAndAuthorityKind(loginIdParam, userInfo.getAuthorityKind());
+    }
+    // どちらもない場合は全件検索
+    return repository.findByLoginIdLike(loginIdParam);
+	}
+
+  /**
    * ユーザー情報EntityのListをユーザー一覧情報DTOのListに変換します。
    *
    * @param gotUserInfoList ユーザー情報EntityのList
@@ -47,8 +83,8 @@ public class UserListServiceImpl implements UserListService {
     for (UserInfo gotUserInfo : gotUserInfoList) {
       // entityをdtoに詰める
       UserInfoDto userInfoDto = mapper.map(gotUserInfo, UserInfoDto.class);
-      userInfoDto.setStatus(gotUserInfo.getStatus().getDisplayValue());
-      userInfoDto.setAuthority(gotUserInfo.getAuthority().getDisplayValue());
+      userInfoDto.setStatus(gotUserInfo.getUserStatusKind().getDisplayValue());
+      userInfoDto.setAuthority(gotUserInfo.getAuthorityKind().getDisplayValue());
       userInfoDtoList.add(userInfoDto);
     }
 

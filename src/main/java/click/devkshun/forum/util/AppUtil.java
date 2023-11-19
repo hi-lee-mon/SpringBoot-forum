@@ -1,6 +1,7 @@
 package click.devkshun.forum.util;
 
 import java.util.Locale;
+
 import org.springframework.context.MessageSource;
 
 /**
@@ -32,5 +33,25 @@ public class AppUtil {
    */
   public static String getMessage(MessageSource messageSource, String key,Locale locale, Object...params){
     return messageSource.getMessage(key,params, locale);
+  }
+
+  /**
+	 * DBのLIKE検索用に、パラメーターにワイルドカードを付与します。
+	 * 
+	 * @param param パラメーター
+	 * @return 前後にワイルドカードが付いたパラメーター
+	 */
+	public static String addWildcard(String param) {
+		return "%" + param + "%";
+	}
+
+  /**
+   * nullチェックを行います。
+   * 
+   * @param obj 任意のオブジェクト
+   * @return 引数がnullの場合はtrue、それ以外はfalse
+   */
+  public static boolean isNull(Object obj){
+    return obj == null;
   }
 }
