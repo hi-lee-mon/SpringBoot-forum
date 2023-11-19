@@ -95,8 +95,9 @@
             </tr>
           </tbody>
         </table>
+        <input type="text" id="selectedLoginId" hidden>
         <input type="submit" class="btn btn-secondary" id="updateBtn" name="update" value="更新" disabled>
-        <input type="button" class="btn btn-danger" id="deleteDummyBtn" value="削除" disabled>
+				<input type="button" class="btn btn-danger" id="deleteDummyBtn" data-bs-toggle="modal" data-bs-target="#deleteConfirm" value="削除" disabled>
       </form>
     </th:block>
     <th:block th:if="${userList.isEmpty()}">
@@ -108,6 +109,24 @@
       <a th:href="@{/index}">▶ホーム画面へ戻る</a>
     </div>
   </div>
+  <!-- 削除確認モーダルの設定 -->
+<div class="modal fade" id="deleteConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="staticBackdropLabel">削除前確認</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				本当に削除してもよろしいですか？
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+				<button type="button" class="btn btn-primary" id="deleteOkBtn">削除する</button>
+			</div>
+		</div>
+	</div>
 </div>
+<script type="text/javascript" th:src="@{/js/userList.js}"></script>
 </body>
 </html>
