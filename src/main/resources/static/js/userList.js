@@ -1,54 +1,45 @@
-// document.querySelectorAll('#userList tbody tr').forEach(function(row) {
-//   row.addEventListener('click', function() {
-//       // すべての行の選択状態を解除
-//       document.querySelectorAll('#userList tbody tr').forEach(function(otherRow) {
-//           otherRow.classList.remove('table-active');
-//       });
-
-//       // クリックされた行に選択状態のクラスを追加
-//       this.classList.add('table-active');
-
-//       // 更新ボタン、削除ボタンを活性化
-//       document.getElementById('updateBtn').removeAttribute('disabled');
-//       document.getElementById('deleteDummyBtn').removeAttribute('disabled');
-
-//       // ログインID一時保管
-//       editSelectedLoginId(this);
-//   });
-// });
-
-
-
 /**
  * ユーザー一覧画面
  */
-$(function() {
-	// テーブルの行をクリックしたときの処理
-	$('#userList tbody tr').on('click', function() {
-		// すべての行の選択状態を解除
-		$('#userList tbody tr').removeClass('table-active');
-		// クリックされた行に選択状態のクラスを追加
-		$(this).addClass('table-active');
-		// 更新ボタン、削除ボタンを活性化
-		$('#updateBtn').removeAttr('disabled');
-		$('#deleteDummyBtn').removeAttr('disabled');
-		
-		// ログインID一時保管
-		editSelectedLoginId($(this));
-	});
-});
+// DOMの読み込み完了後に処理を開始
+document.addEventListener('DOMContentLoaded', () => {
+	const rows = document.querySelectorAll('#userList tbody tr');
+	const updateBtn = document.getElementById('updateBtn');
+	const deleteDummyBtn = document.getElementById('deleteDummyBtn');
+	const selectedLoginId = document.getElementById('selectedLoginId');
 
-/**
- * テーブルで選択された行のログインIDを画面のhidden要素に保管します。
- * 
- * @param row 選択された行情報
- */
-function editSelectedLoginId(row) {
-	row.find('td').each(function() {
-		var columnId = $(this).attr('id');
-		if (columnId.startsWith('loginId_')) {
-			$('#selectedLoginId').val($(this).text());
-			return false;
-		}
+	rows.forEach((row) => {
+			// 行に対するクリックイベントの設定
+			row.addEventListener('click', () => {
+					// すべての行の選択状態を解除
+					rows.forEach((otherRow) => otherRow.classList.remove('table-active'));
+					// 選択された行を選択状態にする(class属性にtable-activeを追加)
+					row.classList.add('table-active');
+					// 更新ボタン、削除ボタンを活性化(disabled属性を削除)
+					updateBtn.removeAttribute('disabled');
+					deleteDummyBtn.removeAttribute('disabled');
+					// ログインID一時保管
+					editSelectedLoginId(row);
+			});
 	});
-}
+
+	/**
+	 * 選択された行のログインIDを一時保管する
+	 * 
+	 * @param row 選択された行
+	 */
+	function editSelectedLoginId(row) {
+			const cells = row.querySelectorAll('td');
+			console.log({cells})
+			cells.forEach((cell) => {
+					// 行の各セルに対して処理
+					const columnId = cell.getAttribute('id');
+					// id属性がloginId_で始まる要素の場合
+					if (columnId.startsWith('loginId_')) {
+							console.log("cell",cell.textContent)
+							selectedLoginId.value = cell.textContent;
+							return;
+					}
+			});
+	}
+});
