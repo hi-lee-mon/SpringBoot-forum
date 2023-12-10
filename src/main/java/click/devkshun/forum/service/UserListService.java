@@ -2,8 +2,9 @@ package click.devkshun.forum.service;
 
 import java.util.List;
 
+import click.devkshun.forum.constant.ExecuteResult;
 import click.devkshun.forum.dto.UserInfoDto;
-import click.devkshun.forum.form.UserListForm;
+import click.devkshun.forum.dto.UserSearchInfoDto;
 /**
  * ユーザー一覧画面Serviceクラス
  *
@@ -21,8 +22,16 @@ public interface UserListService {
 
   /**
    * ユーザー情報を条件検索した結果を画面の表示用に変換して返却します。
-   * @param form 検索条件フォーム
+   * @param userSearchInfoDto 検索条件
    * @return 検索結果
    */
-  public List<UserInfoDto>  getUserListByParam(UserListForm form);
+  public List<UserInfoDto>  getUserListByParam(UserSearchInfoDto userSearchInfoDto);
+
+  /**
+	 * 指定されたIDのユーザー情報を削除します。
+	 * 
+	 * @param loginId ログインID
+	 * @return 実行結果(エラー有無)
+	 */
+	public ExecuteResult deleteUserInfoById(String loginId);
 }

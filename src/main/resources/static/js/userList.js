@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const rows = document.querySelectorAll('#userList tbody tr');
 	const updateBtn = document.getElementById('updateBtn');
 	const deleteDummyBtn = document.getElementById('deleteDummyBtn');
+	const deleteOkBtn = document.getElementById('deleteOkBtn');
+	const deleteBtn = document.getElementById('deleteBtn');
 	const selectedLoginId = document.getElementById('selectedLoginId');
 
 	rows.forEach((row) => {
@@ -23,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	});
 
+
+	// 削除処理サブミット
+	deleteOkBtn.addEventListener('click', () => {
+		// ダイアログの削除ボタン押下時にフォーム内のhidden削除ボタンを押下してsubmit
+		deleteBtn.click();
+	});
+
+
 	/**
 	 * 選択された行のログインIDを一時保管する
 	 * 
@@ -30,13 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	 */
 	function editSelectedLoginId(row) {
 			const cells = row.querySelectorAll('td');
-			console.log({cells})
 			cells.forEach((cell) => {
 					// 行の各セルに対して処理
 					const columnId = cell.getAttribute('id');
 					// id属性がloginId_で始まる要素の場合
 					if (columnId.startsWith('loginId_')) {
-							console.log("cell",cell.textContent)
 							selectedLoginId.value = cell.textContent;
 							return;
 					}

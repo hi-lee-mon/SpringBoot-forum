@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.github.dozermapper.core.Mapper;
 
+import click.devkshun.forum.constant.ExecuteResult;
 import click.devkshun.forum.dto.UserInfoDto;
+import click.devkshun.forum.dto.UserSearchInfoDto;
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.UserListForm;
 import click.devkshun.forum.repository.UserInfoRepository;
@@ -42,8 +44,8 @@ public class UserListServiceImpl implements UserListService {
    * {@inheritDoc}
    */
   @Override
-  public List<UserInfoDto>  getUserListByParam(UserListForm form){
-    var userInfo = mapper.map(form, UserInfo.class);
+  public List<UserInfoDto>  getUserListByParam(UserSearchInfoDto userSearchInfoDto){
+    var userInfo = mapper.map(userSearchInfoDto, UserInfo.class);
 		return toUserInfoList(findUserInfoByParam(userInfo));
   }
 
@@ -70,6 +72,21 @@ public class UserListServiceImpl implements UserListService {
     }
     // どちらもない場合は全件検索
     return repository.findByLoginIdLike(loginIdParam);
+	}
+
+  /**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ExecuteResult deleteUserInfoById(String loginId) {
+		var userInfo = repository.findById(loginId);
+		if (userInfo.isEmpty()) {
+			return ExecuteResult.ERROR;
+		}
+
+		repository.deleteById(loginId);
+
+		return ExecuteResult.SUCCEED;
 	}
 
   /**

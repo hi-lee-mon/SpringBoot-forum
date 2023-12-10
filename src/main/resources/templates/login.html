@@ -13,7 +13,7 @@
 
 <div layout:fragment="headerLayoutWithoutLogoutButton" class="container-fluid">
   <h2>ログイン画面</h2>
-  <p th:text="${errorMsg}" class="error_msg"/>
+  <p th:text="${errorMsg}" class="error_msg"></p>
   <form method="POST" th:action="@{/login}" th:object="${loginForm}">
     <div class="inputs_container">
       <div class="input_container">
