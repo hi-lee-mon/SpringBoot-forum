@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ExecuteResult {
+public enum UserDeleteResultEnum {
 
 	/* エラーなし */
 	SUCCEED(MessageConst.USERLIST_DELETE_SUCCEED),

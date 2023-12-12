@@ -8,8 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.dozermapper.core.Mapper;
 
-import click.devkshun.forum.constant.ExecuteResult;
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.UserDeleteResultEnum;
+import click.devkshun.forum.constant.ViewNameConst;
 import click.devkshun.forum.constant.db.AuthorityKindEnum;
 import click.devkshun.forum.constant.db.UserStatusKindEnum;
 import click.devkshun.forum.dto.UserSearchInfoDto;
@@ -69,7 +70,7 @@ public class UserListController {
     // ユーザ一覧情報をセット
     modelAndView.addObject(KEY_USER_LIST, userInfoDtoList);
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.USER_LIST);
+    modelAndView.setViewName(ViewNameConst.USER_LIST);
 
     return modelAndView;
   }
@@ -95,7 +96,7 @@ public class UserListController {
     modelAndView.addObject(KEY_USER_LIST, userInfoDtoList);
 
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.USER_LIST);
+    modelAndView.setViewName(ViewNameConst.USER_LIST);
 
     return modelAndView;
   }
@@ -109,8 +110,8 @@ public class UserListController {
 	 */
 	@PostMapping(value = UrlConst.USER_LIST, params = "delete")
 	public ModelAndView deleteUser(ModelAndView modelAndView, UserListForm form) {
-		ExecuteResult executeResult = service.deleteUserInfoById(form.getSelectedLoginId());
-		modelAndView.addObject("isError", executeResult == ExecuteResult.ERROR); // isErrorはboolean
+		UserDeleteResultEnum executeResult = service.deleteUserInfoById(form.getSelectedLoginId());
+		modelAndView.addObject("isError", executeResult == UserDeleteResultEnum.ERROR); // isErrorはboolean
 		modelAndView.addObject("message", AppUtil.getMessage(messageSource, executeResult.getMessageId()));
 
 		// 削除後、フォーム情報の「選択されたログインID」は不要になるため、クリアします。

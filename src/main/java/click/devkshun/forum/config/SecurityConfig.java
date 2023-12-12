@@ -1,7 +1,5 @@
 package click.devkshun.forum.config;
 
-import click.devkshun.forum.constant.UrlConst;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import click.devkshun.forum.constant.UrlConst;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
@@ -37,14 +38,14 @@ public class SecurityConfig {
           .permitAll()// /css/**などログインしていなくてもアクセス可能とする
         .anyRequest().authenticated() // 上記以外の全てのURLはログイン後のみアクセス可能
     ).formLogin(login -> login //  フォーム認証の設定記載開始(フォームを利用した認証をすると宣言する)
-        .loginPage("/"+UrlConst.LOGIN) // ログイン画面のURL指定
+        .loginPage(UrlConst.LOGIN) // ログイン画面のURL指定
             .permitAll()// ログイン画面は誰でも参照可能
-        .loginProcessingUrl("/"+UrlConst.LOGIN) // ユーザ名・パスワードの送信先URL
+        .loginProcessingUrl(UrlConst.LOGIN) // ユーザ名・パスワードの送信先URL
         .usernameParameter(OVERRIDE_USERNAME_PARAMETER)
-        .defaultSuccessUrl("/"+UrlConst.HOME) // ログイン成功後のリダイレクト先
-        .failureUrl( "/"+UrlConst.LOGIN + "?error") // ログイン失敗後のリダイレクト先
+        .defaultSuccessUrl(UrlConst.HOME) // ログイン成功後のリダイレクト先
+        .failureUrl(UrlConst.LOGIN + "?error") // ログイン失敗後のリダイレクト先
     ).logout(logout -> logout // ログアウト設定記述開始
-        .logoutSuccessUrl("/"+UrlConst.LOGIN) // ログアウト後のリダイレクト先
+        .logoutSuccessUrl(UrlConst.LOGIN) // ログアウト後のリダイレクト先
         .invalidateHttpSession(true) // HTTPセッションの無効化。trueでセッションの削除を行う(ログアウトするなら削除するのが当たり前なのでおまじない)
         .deleteCookies(JSESSIONID) // 対象のクッキーを削除
     );

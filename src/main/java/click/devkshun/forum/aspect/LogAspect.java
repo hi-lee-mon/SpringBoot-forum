@@ -26,6 +26,7 @@ public class LogAspect {
    *
    * @param jp 処理を挿入する場所の情報
    * @return 指定したメソッドの戻り値
+   * @throws Throwable 例外
    */
   @Around("execution(* click.devkshun.forum..*(..))")
   public Object writeLog(ProceedingJoinPoint jp) throws Throwable  {

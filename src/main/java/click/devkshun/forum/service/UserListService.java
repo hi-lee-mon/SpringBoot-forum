@@ -2,7 +2,7 @@ package click.devkshun.forum.service;
 
 import java.util.List;
 
-import click.devkshun.forum.constant.ExecuteResult;
+import click.devkshun.forum.constant.UserDeleteResultEnum;
 import click.devkshun.forum.dto.UserInfoDto;
 import click.devkshun.forum.dto.UserSearchInfoDto;
 /**
@@ -33,5 +33,5 @@ public interface UserListService {
 	 * @param loginId ログインID
 	 * @return 実行結果(エラー有無)
 	 */
-	public ExecuteResult deleteUserInfoById(String loginId);
+	public UserDeleteResultEnum deleteUserInfoById(String loginId);
 }

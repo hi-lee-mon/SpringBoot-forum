@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.dozermapper.core.Mapper;
 
-import click.devkshun.forum.constant.ExecuteResult;
+import click.devkshun.forum.constant.UserDeleteResultEnum;
 import click.devkshun.forum.dto.UserInfoDto;
 import click.devkshun.forum.dto.UserSearchInfoDto;
 import click.devkshun.forum.entity.UserInfo;
@@ -78,15 +78,15 @@ public class UserListServiceImpl implements UserListService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ExecuteResult deleteUserInfoById(String loginId) {
+	public UserDeleteResultEnum deleteUserInfoById(String loginId) {
 		var userInfo = repository.findById(loginId);
 		if (userInfo.isEmpty()) {
-			return ExecuteResult.ERROR;
+			return UserDeleteResultEnum.ERROR;
 		}
 
 		repository.deleteById(loginId);
 
-		return ExecuteResult.SUCCEED;
+		return UserDeleteResultEnum.SUCCEED;
 	}
 
   /**

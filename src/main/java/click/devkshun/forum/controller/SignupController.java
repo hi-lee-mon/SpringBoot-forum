@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import click.devkshun.forum.constant.SignupMessageEnum;
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.ViewNameConst;
 import click.devkshun.forum.entity.UserInfo;
 import click.devkshun.forum.form.SignupForm;
 import click.devkshun.forum.service.SignupService;
@@ -44,7 +45,7 @@ public class SignupController {
     // 空のフォームを作成
     modelAndView.addObject("signupForm", new SignupForm());
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.SIGNUP);
+    modelAndView.setViewName(ViewNameConst.SIGNUP);
     return modelAndView;
   }
 
@@ -63,7 +64,7 @@ public class SignupController {
   ){
     if(bindingResult.hasErrors()){
       // バリデーションエラー処理
-      modelAndView.setViewName(UrlConst.SIGNUP);
+      modelAndView.setViewName(ViewNameConst.SIGNUP);
       return modelAndView;
     }
 
@@ -74,7 +75,7 @@ public class SignupController {
     String message = AppUtil.getMessage(messageSource, messageEnum.getMessageId());
     modelAndView.addObject("message",message);
     modelAndView.addObject("isError",messageEnum.isError());
-    modelAndView.setViewName(UrlConst.SIGNUP);
+    modelAndView.setViewName(ViewNameConst.SIGNUP);
     return modelAndView;
   }
 

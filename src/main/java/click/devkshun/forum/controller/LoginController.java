@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.ViewNameConst;
 import click.devkshun.forum.form.LoginForm;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +43,7 @@ public class LoginController {
     // 空のフォームを作成
     modelAndView.addObject("loginForm", new LoginForm());
     // 遷移先の指定
-    modelAndView.setViewName("login");
+    modelAndView.setViewName(ViewNameConst.LOGIN);
     return modelAndView;
   }
 
@@ -59,7 +60,7 @@ public class LoginController {
     // 空のフォームを作成
     modelAndView.addObject("loginForm", new LoginForm());
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.LOGIN);
+    modelAndView.setViewName(ViewNameConst.LOGIN);
     return modelAndView;
   }
 /**

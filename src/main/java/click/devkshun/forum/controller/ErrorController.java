@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.ViewNameConst;
 
 /**
  * ホーム画面 Controller
@@ -23,7 +24,7 @@ public class ErrorController {
   @GetMapping(value=UrlConst.ERROR,params="continue")
   public ModelAndView view(ModelAndView modelAndView){
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.ERROR);
+    modelAndView.setViewName(ViewNameConst.ERROR);
     return modelAndView;
   }
 

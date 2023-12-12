@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			// 行に対するクリックイベントの設定
 			row.addEventListener('click', () => {
 					// すべての行の選択状態を解除
-					rows.forEach((otherRow) => otherRow.classList.remove('table-active'));
+					rows.forEach((otherRow) => otherRow.classList.remove('table-row-active'));
 					// 選択された行を選択状態にする(class属性にtable-activeを追加)
-					row.classList.add('table-active');
+					row.classList.add('table-row-active');
 					// 更新ボタン、削除ボタンを活性化(disabled属性を削除)
 					updateBtn.removeAttribute('disabled');
 					deleteDummyBtn.removeAttribute('disabled');

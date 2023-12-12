@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import click.devkshun.forum.constant.UrlConst;
+import click.devkshun.forum.constant.ViewNameConst;
 import click.devkshun.forum.constant.db.AuthorityKindEnum;
 
 /**
@@ -29,7 +30,7 @@ public class HomeController {
     var hasUserManageAuth = user.getAuthorities().stream().allMatch(authority -> authority.getAuthority().equals(
         AuthorityKindEnum.ITEM_AND_USER_MANAGER.getCode()));
     // 遷移先の指定
-    modelAndView.setViewName(UrlConst.HOME);
+    modelAndView.setViewName(ViewNameConst.HOME);
     // 管理者権限フラグ
     modelAndView.addObject("hasUserManageAuth", hasUserManageAuth);
     return modelAndView;

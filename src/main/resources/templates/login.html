@@ -13,7 +13,12 @@
 
 <div layout:fragment="headerLayoutWithoutLogoutButton" class="container-fluid">
   <h2>ログイン画面</h2>
-  <p th:text="${errorMsg}" class="error_msg"></p>
+  <div class="alert d-flex align-items-center alert-danger" role="alert" th:if="${errorMsg != null}">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24">
+      <use xlink:href="#exclamation-triangle-fill"/>
+    </svg>
+    <p th:text="${errorMsg}" class="error_msg m-0"></p>
+  </div>
   <form method="POST" th:action="@{/login}" th:object="${loginForm}">
     <div class="inputs_container">
       <div class="input_container">
