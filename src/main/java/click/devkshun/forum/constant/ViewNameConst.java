@@ -23,4 +23,7 @@ public class ViewNameConst {
   /**エラー画面 */
   public static final String ERROR = "error";
 
+	/**ユーザ編集画面 */
+  public static final String USER_EDIT = "userEdit";
+
 }

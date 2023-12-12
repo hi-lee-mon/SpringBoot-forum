@@ -4,7 +4,7 @@
 // DOMの読み込み完了後に処理を開始
 document.addEventListener('DOMContentLoaded', () => {
 	const rows = document.querySelectorAll('#userList tbody tr');
-	const updateBtn = document.getElementById('updateBtn');
+	const editBtn = document.getElementById('editBtn');
 	const deleteDummyBtn = document.getElementById('deleteDummyBtn');
 	const deleteOkBtn = document.getElementById('deleteOkBtn');
 	const deleteBtn = document.getElementById('deleteBtn');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					// 選択された行を選択状態にする(class属性にtable-activeを追加)
 					row.classList.add('table-row-active');
 					// 更新ボタン、削除ボタンを活性化(disabled属性を削除)
-					updateBtn.removeAttribute('disabled');
+					editBtn.removeAttribute('disabled');
 					deleteDummyBtn.removeAttribute('disabled');
 					// ログインID一時保管
 					editSelectedLoginId(row);

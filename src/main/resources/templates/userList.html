@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>home</title>
+  <title>ユーザ一覧</title>
   <link th:href="@{/css/loginForm.css}" rel="stylesheet" type="text/css">
 </head>
 
@@ -105,7 +105,7 @@
             </tbody>
           </table>
           <input type="text" th:field="*{selectedLoginId}" hidden>
-          <input type="submit" class="btn btn-secondary" id="updateBtn" name="update" value="更新" disabled>
+          <input type="submit" class="btn btn-secondary" id="editBtn" name="edit" value="編集" disabled>
           <input type="button" class="btn btn-danger" id="deleteDummyBtn" data-bs-toggle="modal"
             data-bs-target="#deleteConfirm" value="削除" disabled>
           <button type="submit" id="deleteBtn" name="delete" hidden>

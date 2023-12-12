@@ -1,6 +1,8 @@
 package click.devkshun.forum.controller;
 
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.github.dozermapper.core.Mapper;
 
+import click.devkshun.forum.constant.SessionKeyConst;
 import click.devkshun.forum.constant.UrlConst;
 import click.devkshun.forum.constant.UserDeleteResultEnum;
 import click.devkshun.forum.constant.ViewNameConst;
@@ -17,6 +20,7 @@ import click.devkshun.forum.dto.UserSearchInfoDto;
 import click.devkshun.forum.form.UserListForm;
 import click.devkshun.forum.service.UserListService;
 import click.devkshun.forum.util.AppUtil;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 
@@ -45,8 +49,11 @@ public class UserListController {
   /** Dozer Mapper */
   private final Mapper mapper;
 
-  //  /**メッセージソース*/
+  /**メッセージソース*/
   private final MessageSource messageSource;
+
+  /** セッションオブジェクト */
+	private final HttpSession session;
 
   /**
    * 画面の初期表示を行います。
@@ -60,6 +67,9 @@ public class UserListController {
    */
   @GetMapping(UrlConst.USER_LIST)
   public ModelAndView view(ModelAndView modelAndView, UserListForm form) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+    session.removeAttribute(SessionKeyConst.SELECTED_LOGIN_ID);
     // ユーザ一覧情報を取得
     var userInfoDtoList = service.getAllUserList();
     // 検索条件フォームの初期値をセット
@@ -116,6 +126,22 @@ public class UserListController {
 
 		// 削除後、フォーム情報の「選択されたログインID」は不要になるため、クリアします。
 		return searchUser(modelAndView, form.clearSelectedLoginId());
+	}
+
+  	/**
+	 * 選択行のユーザー情報を削除して、最新情報で画面を再表示します。
+	 * 
+	 * @param  modelAndView モデル
+	 * @param form 入力情報
+	 * @return リダイレクトURL
+	 */
+	@PostMapping(value = UrlConst.USER_LIST, params = "edit")
+	public ModelAndView updateUser(ModelAndView modelAndView,UserListForm form) {
+    // 次の遷移先にどのログインIDを編集するかを知らせないといけないのでセッションに保持
+		session.setAttribute(SessionKeyConst.SELECTED_LOGIN_ID, form.getSelectedLoginId());
+    // 遷移先の指定
+    modelAndView.setViewName(AppUtil.doRedirect(UrlConst.USER_EDIT));
+		return modelAndView;
 	}
 
 }
